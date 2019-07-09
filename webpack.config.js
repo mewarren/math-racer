@@ -27,12 +27,12 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.(css)$/,
         use: [
-          {
-            loader: 'stye-loader',
-            options: { sourceMap: true }
-          },
+          // {
+          //   loader: 'style-loader',
+          //   options: { sourceMap: true }
+          // },
           {
             loader: 'css-loader',
             options: {
