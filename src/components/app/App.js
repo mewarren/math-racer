@@ -5,9 +5,9 @@ const template = new Template(html);
 
 export default class App{
 
-    render(){
-        const dom = template.clone();
+  render(){
+    const dom = template.clone();
         
-        return dom;
-    }
+    return dom;
+  }
 }

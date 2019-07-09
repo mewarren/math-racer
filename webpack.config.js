@@ -17,7 +17,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(html)$/,
+        test: /\.html$/,
         use: {
           loader: 'html-loader',
           options: {
@@ -27,12 +27,12 @@ module.exports = {
         }
       },
       {
-        test: /\.(css)$/,
+        test: /\.css$/,
         use: [
-          // {
-          //   loader: 'style-loader',
-          //   options: { sourceMap: true }
-          // },
+          {
+            loader: 'style-loader',
+            options: { sourceMap: true }
+          },
           {
             loader: 'css-loader',
             options: {
