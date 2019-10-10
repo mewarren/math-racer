@@ -1,8 +1,14 @@
 import React from 'react';
+import Players from '../players/Players';
 
 class Game extends React.Component {
     render() {
-        return <h2>Game will go here</h2>;
+        return ( 
+            <div>
+                <h2>Game will go here</h2>
+                <Players />
+            </div>
+        );
     }
 }
 
