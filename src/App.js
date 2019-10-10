@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Game from './components/game/Game';
 
 function App() {
   return (
@@ -9,15 +9,8 @@ function App() {
         <h1>
           Math Racer
         </h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <Game />
     </div>
   );
 }
