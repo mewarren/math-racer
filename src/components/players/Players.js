@@ -7,10 +7,18 @@ class Players extends React.Component {
             <div>
                 <p>Select the number of players</p>
                 <div className="selectPlayers">
-                    <p>1</p>
-                    <p>2</p>
-                    <p>3</p>
-                    <p>4</p>
+                    <input type="radio" id="onePlayers" name="selectPlayers" value="one">
+                    </input>
+                    <label for="onePlayers">1</label>
+                    <input type="radio" id="twoPlayers" name="selectPlayers" value="two">
+                    </input>
+                    <label for="twoPlayers">2</label>
+                    <input type="radio" id="threePlayers" name="selectPlayers" value="three">
+                    </input>
+                    <label for="threePlayers">3</label>
+                    <input type="radio" id="fourPlayers" name="selectPlayers" value="four">
+                    </input>
+                    <label for="fourPlayers">4</label>
                 </div>
 
             </div>
