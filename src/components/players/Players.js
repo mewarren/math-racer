@@ -1,7 +1,18 @@
 import React from 'react';
 import './players.css';
 
-class Players extends React.Component {
+export default class Players extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        console.log('Clicked on Button!');
+    }
+    
+
     render() {
         return(
             <div>
@@ -23,9 +34,9 @@ class Players extends React.Component {
                     </input>
                     <label for="fourPlayers">4</label>
                 </div>
+                <button onClick={this.handleClick}>Next</button>
+
             </div>
         );
     }
 }
-
-export default Players;
