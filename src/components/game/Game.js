@@ -5,10 +5,9 @@ export default class Game extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state ={
+        this.state = {
             numberOfPlayers : 0
         };
-
     }
 
     setNumberOfPlayers = (number) => {
