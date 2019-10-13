@@ -9,7 +9,7 @@ export default class Players extends React.Component {
     }
 
     handleClick() {
-        console.log('Clicked on Button!');
+        this.props.setPlayers(3);
     }
     
 
