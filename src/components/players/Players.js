@@ -8,34 +8,20 @@ export default class Players extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick() {
-        this.props.setPlayers(3);
+    handleClick(button) {
+        this.props.setPlayers(button.currentTarget.value);
     }
     
-
     render() {
         return(
             <div>
                 <p>Select the number of players</p>
                 <div className="selectPlayers">
-                    <input type="radio" id="onePlayers" name="selectPlayers" value="one">
-                    </input>
-                    <label for="onePlayers">1</label>
-                    
-                    <input type="radio" id="twoPlayers" name="selectPlayers" value="two">
-                    </input>
-                    <label for="twoPlayers">2</label>
-                    
-                    <input type="radio" id="threePlayers" name="selectPlayers" value="three">
-                    </input>
-                    <label for="threePlayers">3</label>
-                    
-                    <input type="radio" id="fourPlayers" name="selectPlayers" value="four">
-                    </input>
-                    <label for="fourPlayers">4</label>
+                    <button value="1" onClick={this.handleClick}>1</button>
+                    <button value="2" onClick={this.handleClick}>2</button>
+                    <button value="3" onClick={this.handleClick}>3</button>
+                    <button value="4" onClick={this.handleClick}>4</button>
                 </div>
-                <button onClick={this.handleClick}>Next</button>
-
             </div>
         );
     }
