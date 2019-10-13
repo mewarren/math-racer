@@ -14,7 +14,7 @@ export default class Game extends React.Component {
     setNumberOfPlayers = (number) => {
         console.log('value of number is ' + number)
         this.setState({ 
-            numberOfPlayers : number 
+            numberOfPlayers : parseInt(number) 
         });
     }
     
