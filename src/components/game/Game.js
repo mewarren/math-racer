@@ -18,8 +18,14 @@ export default class Game extends React.Component {
         });
     }
 
-    addPlayerInfo = (name) => {
-        console.log(name);
+    //add indivdual player objects to players object
+    //DELETE THIS LINE WHEN WORKING
+    addPlayerInfo = (id,name) => {
+        console.log(id + ',' +name);
+        let updatedPlayers = Object.assign(this.state.players, {playerId : id, playerName : name} );
+        this.setState({
+            players : updatedPlayers
+        });
     }
     
     render() {

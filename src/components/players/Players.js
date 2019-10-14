@@ -4,7 +4,6 @@ import './players.css';
 export default class Players extends React.Component {
     constructor(props) {
         super(props);
-
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -13,7 +12,7 @@ export default class Players extends React.Component {
     }
     
     render() {       
-        return((!this.props.playersState) ?
+        return ((!this.props.playersState) ?
             <div>
                 <p>Select the number of players</p>
                 <div className="selectPlayers">
