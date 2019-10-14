@@ -7,22 +7,26 @@ export default class Game extends React.Component {
         super(props);
 
         this.state = {
-            numberOfPlayers : 0
+            numberOfPlayers : 0,
+            players : {}
         };
     }
 
     setNumberOfPlayers = (number) => {
-        console.log('value of number is ' + number)
         this.setState({ 
             numberOfPlayers : parseInt(number) 
         });
+    }
+
+    addPlayerInfo = (name) => {
+        console.log(name);
     }
     
     render() {
         return ( 
             <div>
                 <Players playersState={this.state.numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
-                <Player playersState={this.state.numberOfPlayers}/>
+                <Player playersState={this.state.numberOfPlayers} addPlayerName={this.addPlayerInfo}/>
             </div>
         );
     }
