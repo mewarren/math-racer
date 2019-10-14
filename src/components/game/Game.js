@@ -1,5 +1,6 @@
 import React from 'react';
 import Players from '../players/Players';
+import Player from '../player/Player';
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -20,8 +21,8 @@ export default class Game extends React.Component {
     render() {
         return ( 
             <div>
-                <h2>Game will go here</h2>
-                <Players setPlayers={this.setNumberOfPlayers}/>
+                <Players playersState={this.state.numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
+                <Player playersState={this.state.numberOfPlayers}/>
             </div>
         );
     }

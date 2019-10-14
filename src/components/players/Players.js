@@ -12,8 +12,8 @@ export default class Players extends React.Component {
         this.props.setPlayers(button.currentTarget.value);
     }
     
-    render() {
-        return(
+    render() {       
+        return((!this.props.playersState) ?
             <div>
                 <p>Select the number of players</p>
                 <div className="selectPlayers">
@@ -23,6 +23,8 @@ export default class Players extends React.Component {
                     <button value="4" onClick={this.handleClick}>4</button>
                 </div>
             </div>
-        );
+            : null
+         );
+        
     }
 }
