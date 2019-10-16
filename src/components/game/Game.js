@@ -28,10 +28,11 @@ export default class Game extends React.Component {
     }
     
     render() {
+        const { numberOfPlayers, players } = this.state;
         return ( 
             <div>
-                <Players playersState={this.state.numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
-                <Player playersState={this.state.numberOfPlayers} playerInfo={this.state.players} addPlayerName={this.addPlayerInfo}/>
+                <Players playersState={numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
+                <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
             </div>
         );
     }
