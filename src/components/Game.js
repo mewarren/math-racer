@@ -1,6 +1,7 @@
 import React from 'react';
-import Players from '../players/Players';
-import Player from '../player/Player';
+import Players from './Players';
+import Player from './Player';
+import Subject from './Subject';
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -33,6 +34,7 @@ export default class Game extends React.Component {
             <div>
                 <Players playersState={numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
                 <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
+                <Subject />
             </div>
         );
     }
