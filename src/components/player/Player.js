@@ -4,35 +4,26 @@ export default class Player extends React.Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
-
-        this.state = {
-            playerId : 0
-        }
     }
 
-    // componentWillMount(){
-    //     this.setState({
-    //         playerId : this.props.playersState
-    //     });
-    // }
-//still working on this logic--DELETE WHEN GAME COMPONENT IS WORK PROPERLY
     handleClick() {
+        let name = document.getElementById('playerName');
         let player = {
-            id : this.state.playerId,
-            name : document.getElementById('playerName').value
+            id : this.props.playerInfo.length + 1,
+            name : name.value
         };
-        this.props.addPlayerName(player);
-        this.setState({
-            playerId : this.state.playerId - 1
-        });
+        name.value = '';
+        this.props.addPlayerName(player);           
     }
 
     render() {
-        return ((this.props.playersState) ?
+        const { playerInfo, playersState } = this.props;
+        return ((playerInfo.length < playersState) ?
             <div>
+                <p>Please name for Player {playerInfo.length + 1}.</p>
                 <input type="text" name="playerName" id="playerName"></input>
                 <button onClick={this.handleClick}>Next</button>
-            </div>
+            </div> 
             : null
         )
     }

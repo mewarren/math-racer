@@ -18,8 +18,7 @@ export default class Game extends React.Component {
         });
     }
 
-    //add indivdual player objects to players object
-    //DELETE THIS LINE WHEN WORKING
+    //add indivdual player objects to players array 
     addPlayerInfo = (player) => {
         console.log(player);
         let updatedPlayers = [...this.state.players, player]
@@ -32,7 +31,7 @@ export default class Game extends React.Component {
         return ( 
             <div>
                 <Players playersState={this.state.numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
-                <Player playersState={this.state.numberOfPlayers} addPlayerName={this.addPlayerInfo}/>
+                <Player playersState={this.state.numberOfPlayers} playerInfo={this.state.players} addPlayerName={this.addPlayerInfo}/>
             </div>
         );
     }
