@@ -34,7 +34,7 @@ export default class Game extends React.Component {
             <div>
                 <Players playersState={numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
                 <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
-                <Subject />
+                <Subject playersState={numberOfPlayers} playerInfo={players}/>
             </div>
         );
     }

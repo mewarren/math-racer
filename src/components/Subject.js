@@ -10,12 +10,14 @@ export default class Subject extends React.Component {
     }
 
     render() {
-        return (
+        const { playersState, playerInfo } = this.props;
+        return ((playersState >0 && playersState === playerInfo.length) ?
             <div className="selectSubject">
                 <p>Addition</p>
                 <p>Subtraction</p>
                 <button>Start</button>
             </div>
+            : null
         );
     }
 
