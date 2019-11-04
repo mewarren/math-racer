@@ -7,9 +7,11 @@ export default class Game extends React.Component {
     constructor(props) {
         super(props);
 
+
         this.state = {
             numberOfPlayers : 0,
-            players : []
+            players : [],
+            subject : null
         };
     }
 
@@ -27,15 +29,23 @@ export default class Game extends React.Component {
             players : updatedPlayers
         });
     }
+
+    startGame = (subject) => {
+        this.setState({ 
+            subject : subject 
+        });
+    }
+
+
     
     render() {
-        const { numberOfPlayers, players } = this.state;
+        const { numberOfPlayers, players, subject } = this.state;
         
         return ( 
             <div>
                 <Players playersState={numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
                 <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
-                <Subject playersState={numberOfPlayers} playerInfo={players}/>
+                <Subject playersState={numberOfPlayers} playerInfo={players} subject={subject} startGame={this.startGame}/>
             </div>
         );
     }

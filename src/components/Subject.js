@@ -4,11 +4,10 @@ export default class Subject extends React.Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.handleStart = this.handleStart.bind(this);
 
         this.state = {
-            subject : null,
-            add : false,
-            sub : false
+            subject : null
         };
     }
 
@@ -18,18 +17,21 @@ export default class Subject extends React.Component {
         }); 
     }
 
+    handleStart(button){
+        console.log('start game with ' + this.state.subject);
+        this.props.startGame(this.state.subject);
+    }
+
     render() {
-        const { playersState, playerInfo } = this.props;
+        const { playersState, playerInfo, subject } = this.props;
         
-        return ((playersState > 0 && playersState === playerInfo.length) ?
+        return ((subject===null && playersState > 0 && playersState === playerInfo.length) ?
             <div className="selectSubject">
                 <button value="add" onClick={this.handleClick}>Addition</button>
                 <button value="sub" onClick={this.handleClick}>Subtraction</button>
-                <button>Start</button>
+                <button onClick={this.handleStart}>Start</button>
             </div>
             : null
         );
     }
-
-
 }
