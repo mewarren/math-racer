@@ -22,7 +22,7 @@ export default class Game extends React.Component {
     //add indivdual player objects to players array 
     addPlayerInfo = (player) => {
         console.log(player);
-        let updatedPlayers = [...this.state.players, player]
+        let updatedPlayers = [...this.state.players, player];
         this.setState({
             players : updatedPlayers
         });
@@ -30,6 +30,7 @@ export default class Game extends React.Component {
     
     render() {
         const { numberOfPlayers, players } = this.state;
+        
         return ( 
             <div>
                 <Players playersState={numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
