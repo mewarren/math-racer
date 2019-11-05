@@ -3,6 +3,7 @@ import Players from './Players';
 import Player from './Player';
 import Subject from './Subject';
 import StatusBar from './StatusBar';
+import GameInterface from './GameInterface';
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -26,7 +27,6 @@ export default class Game extends React.Component {
 
     //add indivdual player objects to players array 
     addPlayerInfo = (player) => {
-        console.log(player);
         let updatedPlayers = [...this.state.players, player];
         this.setState({
             players : updatedPlayers
@@ -41,6 +41,15 @@ export default class Game extends React.Component {
         });
     }
 
+    updateActivePlayer = () => {
+        console.log('button was clicked!');
+        if(this.state.activePlayer < this.state.numberOfPlayers){
+            this.setState(prevState => {
+                return {activePlayer : prevState.activePlayer + 1}
+            });
+        } else { this.setState({ activePlayer : 1 });}
+    }
+
     render() {
         const { numberOfPlayers, players, subject, activeGame, activePlayer } = this.state;
         
@@ -50,6 +59,7 @@ export default class Game extends React.Component {
                 <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
                 <Subject playersState={numberOfPlayers} playerInfo={players} subject={subject} startGame={this.startGame}/>
                 <StatusBar gameStatus={activeGame} playerInfo={players} activePlayer={activePlayer}/>
+                <GameInterface gameStatus={activeGame} nextPlayer={this.updateActivePlayer}/>
             </div>
         );
     }
