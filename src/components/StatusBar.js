@@ -1,16 +1,19 @@
 import React from 'react';
 
 export default class StatusBar extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     render() {
-        return(
+        const { playerInfo, activePlayer } = this.props;
+        return((this.props.gameStatus) ?
             <div>
-                <h3>Player Name</h3>
-                <h3>Player Score:</h3>
-            </div>
+                <h3>{playerInfo[activePlayer].name}</h3>
+                <h3>{playerInfo[activePlayer].score}</h3>
+            </div> 
+            : null
+
 
         );
     }

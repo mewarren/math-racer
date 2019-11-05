@@ -13,7 +13,8 @@ export default class Game extends React.Component {
             numberOfPlayers : 0,
             players : [],
             subject : null,
-            activeGame: false
+            activeGame: false,
+            activePlayer: 0
         };
     }
 
@@ -35,21 +36,20 @@ export default class Game extends React.Component {
     startGame = (subject) => {
         this.setState({ 
             subject : subject,
-            activeGame : true 
+            activeGame : true,
+            activePlayer : 1 
         });
     }
 
-
-    
     render() {
-        const { numberOfPlayers, players, subject } = this.state;
+        const { numberOfPlayers, players, subject, activeGame, activePlayer } = this.state;
         
         return ( 
             <div>
                 <Players playersState={numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
                 <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
                 <Subject playersState={numberOfPlayers} playerInfo={players} subject={subject} startGame={this.startGame}/>
-                <StatusBar/>
+                <StatusBar gameStatus={activeGame} playerInfo={players} activePlayer={activePlayer}/>
             </div>
         );
     }
