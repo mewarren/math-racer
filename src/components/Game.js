@@ -2,6 +2,7 @@ import React from 'react';
 import Players from './Players';
 import Player from './Player';
 import Subject from './Subject';
+import StatusBar from './StatusBar';
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -48,6 +49,7 @@ export default class Game extends React.Component {
                 <Players playersState={numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
                 <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
                 <Subject playersState={numberOfPlayers} playerInfo={players} subject={subject} startGame={this.startGame}/>
+                <StatusBar/>
             </div>
         );
     }

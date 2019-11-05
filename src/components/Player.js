@@ -26,6 +26,6 @@ export default class Player extends React.Component {
                 <button onClick={this.handleClick}>Next</button>
             </div> 
             : null
-        )
+        );
     }
 }
