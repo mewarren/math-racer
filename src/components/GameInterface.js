@@ -1,4 +1,5 @@
 import React from 'react';
+import Question from './Question';
 
 export default class GameInterface extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export default class GameInterface extends React.Component {
     render() {
         return((this.props.gameStatus) ?
             <div>
-                <p>questions go here</p>
+                <Question />
                 <button onClick={this.handleClick}>Enter</button>
             </div>
             : null
