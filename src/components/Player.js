@@ -10,7 +10,8 @@ export default class Player extends React.Component {
         let name = document.getElementById('playerName');
         let player = {
             id : this.props.playerInfo.length + 1,
-            name : name.value
+            name : name.value,
+            score : 0
         };
         name.value = '';
         this.props.addPlayerName(player);           
