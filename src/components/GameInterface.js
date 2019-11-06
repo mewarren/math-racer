@@ -15,7 +15,7 @@ export default class GameInterface extends React.Component {
     render() {
         return((this.props.gameStatus) ?
             <div>
-                <Question />
+                <Question subject={this.props.subject}/>
                 <button onClick={this.handleClick}>Enter</button>
             </div>
             : null

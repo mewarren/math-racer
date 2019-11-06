@@ -59,7 +59,7 @@ export default class Game extends React.Component {
                 <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
                 <Subject playersState={numberOfPlayers} playerInfo={players} subject={subject} startGame={this.startGame}/>
                 <StatusBar gameStatus={activeGame} playerInfo={players} activePlayer={activePlayer}/>
-                <GameInterface gameStatus={activeGame} nextPlayer={this.updateActivePlayer}/>
+                <GameInterface gameStatus={activeGame} nextPlayer={this.updateActivePlayer} subject={subject}/>
             </div>
         );
     }
