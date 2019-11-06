@@ -17,8 +17,7 @@ export default class Subject extends React.Component {
         }); 
     }
 
-    handleStart(button){
-        console.log('start game with ' + this.state.subject);
+    handleStart(){
         this.props.startGame(this.state.subject);
     }
 
@@ -27,6 +26,7 @@ export default class Subject extends React.Component {
         
         return ((subject===null && playersState > 0 && playersState === playerInfo.length) ?
             <div className="selectSubject">
+                <p>Select your subject</p>
                 <button value="add" onClick={this.handleClick}>Addition</button>
                 <button value="sub" onClick={this.handleClick}>Subtraction</button>
                 <button onClick={this.handleStart}>Start</button>

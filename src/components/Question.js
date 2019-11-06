@@ -17,12 +17,12 @@ export default class Question extends React.Component {
         Math.floor(Math.random() * Math.floor(max));
 
         let operator = (subject === 'add') ? " + " : " - "; 
-        let question = getRandomInt(9) + operator + getRandomInt(9);
-        console.log(question);
+        let problem = getRandomInt(9) + operator + getRandomInt(9);
+
         this.setState({
-            problem : question
-        });
-        
+            problem : problem,
+            answer : eval(problem)
+        })      
     }
 
     componentDidMount(){
@@ -32,7 +32,8 @@ export default class Question extends React.Component {
     render() {
         return(
             <div>
-                 <p>questions go here</p>
+                 <p>What is the answer to</p>
+                 <h4>{this.state.problem}</h4>
             </div>
         );
     }
