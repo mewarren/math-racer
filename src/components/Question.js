@@ -33,14 +33,21 @@ export default class Question extends React.Component {
 
      checkAnswer(){
         let answer = document.getElementById('answer');
-        console.log(answer.value);
-        (answer.value === this.state.answer) ? 
-           console.log("Correct!") : console.log("incorrect!");
+        console.log("does " + answer.value + ' = ' + this.state.answer );
+        
+        if(parseInt(answer.value) === this.state.answer) {
+            console.log("Correct!");
+        } else {console.log("incorrect!");}
+        
         answer.value = null;
         this.setState(prevState => {
             return {attempts : prevState.attempts + 1}
         });
      }
+
+    //  handleClick() {
+    //      while()
+    //  }
 
     render() {
         return(
