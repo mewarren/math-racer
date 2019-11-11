@@ -52,14 +52,14 @@ export default class Game extends React.Component {
 
     render() {
         const { numberOfPlayers, players, subject, activeGame, activePlayer } = this.state;
-        
+        const player = players[activePlayer-1];
         return ( 
             <div>
                 <Players playersState={numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
                 <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
                 <Subject playersState={numberOfPlayers} playerInfo={players} subject={subject} startGame={this.startGame}/>
                 <StatusBar gameStatus={activeGame} playerInfo={players} activePlayer={activePlayer}/>
-                <GameInterface gameStatus={activeGame} nextPlayer={this.updateActivePlayer} subject={subject}/>
+                <GameInterface gameStatus={activeGame} nextPlayer={this.updateActivePlayer} player={player} subject={subject}/>
             </div>
         );
     }

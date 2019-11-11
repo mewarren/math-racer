@@ -6,19 +6,30 @@ export default class GameInterface extends React.Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
 
+        this.state = { 
+            playerReady : false,
+        };
     }
 
     handleClick() {
-        this.props.nextPlayer();
+        this.setState({
+            playerReady : true
+        });
+        // this.props.nextPlayer();
     }
 
     render() {
-        return((this.props.gameStatus) ?
+        const { gameStatus, player } = this.props;
+        return((gameStatus !== false) ?
             <div>
-                <Question subject={this.props.subject}/>
-                <button onClick={this.handleClick}>Enter</button>
-            </div>
-            : null
+                {(this.state.playerReady===false) ?
+                <div>
+                    <p> {player.name} are you ready</p>
+                    <button onClick={this.handleClick}>Let's Go!</button> 
+                </div> :
+                <Question subject={this.props.subject} />}
+           
+            </div> : null
         );
     }
 }
