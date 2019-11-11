@@ -19,7 +19,7 @@ export default class GameInterface extends React.Component {
     }
 
     render() {
-        const { gameStatus, player } = this.props;
+        const { gameStatus, player, nextPlayer } = this.props;
         return((gameStatus !== false) ?
             <div>
                 {(this.state.playerReady===false) ?
@@ -27,7 +27,7 @@ export default class GameInterface extends React.Component {
                     <p> {player.name} are you ready</p>
                     <button onClick={this.handleClick}>Let's Go!</button> 
                 </div> :
-                <Question subject={this.props.subject} />}
+                <Question subject={this.props.subject} nextPlayer={nextPlayer}/>}
            
             </div> : null
         );
