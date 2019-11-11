@@ -1,5 +1,5 @@
 import React from 'react';
-// import Question from './Question';
+import Question from './Question';
 
 export default class GameInterface extends React.Component {
     constructor(props) {
@@ -21,18 +21,15 @@ export default class GameInterface extends React.Component {
     render() {
         const { gameStatus, player } = this.props;
         return((gameStatus !== false) ?
-            // <div>
-            //     <Question subject={this.props.subject}/>
-            //     {/* <button onClick={this.handleClick}>Enter</button> */}
-            // </div>
-            // : 
             <div>
-                <p> {player.name} are you ready</p>
-                
-                {(this.state.playerReady===false) ? 
-                <button onClick={this.handleClick}>Let's Go!</button> 
-                : null}
-            </div>: null
+                {(this.state.playerReady===false) ?
+                <div>
+                    <p> {player.name} are you ready</p>
+                    <button onClick={this.handleClick}>Let's Go!</button> 
+                </div> :
+                <Question subject={this.props.subject} />}
+           
+            </div> : null
         );
     }
 }
