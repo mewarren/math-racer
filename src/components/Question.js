@@ -11,7 +11,7 @@ export default class Question extends React.Component {
             subject : this.props.subject,
             problem : null,
             answer : null,
-            attempts : 1
+            attempts : 3
         };
     }
 
@@ -42,28 +42,32 @@ export default class Question extends React.Component {
         
         answer.value = null;
         this.setState(prevState => {
-            return {attempts : prevState.attempts + 1}
+            return {attempts : prevState.attempts - 1}
         });
     }
 
-    handleClick() {
-        if(this.state.attempts < 3) {
-            this.checkAnswer(); 
-        } else {
-            this.props.nextPlayer();
+    nextQuestion() {
+        this.props.nextPlayer();
             this.generateQuestion(this.state.problem);
             this.setState({
-                attempts : 1
-            });           
+                attempts : 3
+            });   
+    }
+
+    handleClick() {
+        if(this.state.attempts > 1) {
+            this.checkAnswer(); 
+        } else {
+            this.nextQuestion();           
         }  
     }
 
     render() {
         return(
             <div>
-                 <p>What is the answer to</p>
-                 <h4>{this.state.problem}</h4>
-                 <input type="text" name="answer" id="answer"></input>
+                <p>What is the answer to</p>
+                <h4>{this.state.problem}</h4>
+                <input type="text" name="answer" id="answer"></input>
                 <button onClick={this.handleClick}>Check</button>
             </div>
         );
