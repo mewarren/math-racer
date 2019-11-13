@@ -33,6 +33,16 @@ export default class Game extends React.Component {
         });
     }
 
+    addScore = (id, score) => {
+        const { players, activePlayer } = this.state;
+        const currentPlayer = players[activePlayer-1];
+        // const updatedScore = currentPlayer.score;
+        console.log(id + "players score is" + score);
+        // this.setState({
+        //     players : 
+        // })
+    }
+
     startGame = (subject) => {
         this.setState({ 
             subject : subject,
@@ -42,7 +52,7 @@ export default class Game extends React.Component {
     }
 
     updateActivePlayer = () => {
-        console.log('button was clicked!');
+        // console.log('button was clicked!');
         if(this.state.activePlayer < this.state.numberOfPlayers){
             this.setState(prevState => {
                 return {activePlayer : prevState.activePlayer + 1}
@@ -59,7 +69,7 @@ export default class Game extends React.Component {
                 <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
                 <Subject playersState={numberOfPlayers} playerInfo={players} subject={subject} startGame={this.startGame}/>
                 <StatusBar gameStatus={activeGame} playerInfo={players} activePlayer={activePlayer}/>
-                <GameInterface gameStatus={activeGame} nextPlayer={this.updateActivePlayer} player={player} subject={subject}/>
+                <GameInterface gameStatus={activeGame} nextPlayer={this.updateActivePlayer} player={player} subject={subject} addScore={this.addScore}/>
             </div>
         );
     }
