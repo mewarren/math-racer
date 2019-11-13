@@ -33,6 +33,14 @@ export default class Game extends React.Component {
         });
     }
 
+    startGame = (subject) => {
+        this.setState({ 
+            subject : subject,
+            activeGame : true,
+            activePlayer : 1 
+        });
+    }
+
     addScore = (id, score) => {
         const { players, activePlayer } = this.state;
         const currentPlayer = players[activePlayer-1];
@@ -43,13 +51,6 @@ export default class Game extends React.Component {
         // })
     }
 
-    startGame = (subject) => {
-        this.setState({ 
-            subject : subject,
-            activeGame : true,
-            activePlayer : 1 
-        });
-    }
 
     updateActivePlayer = () => {
         // console.log('button was clicked!');
