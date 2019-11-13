@@ -41,22 +41,21 @@ export default class Question extends React.Component {
             this.props.handleScore(this.state.attempts);
             this.nextQuestion();
         } else {
-            console.log("incorrect!");
+            console.log("incorrect!" + this.state.attempts);
             answer.value = null;
-        }
-        
-        answer.value = null;
-        this.setState(prevState => {
-            return {attempts : prevState.attempts - 1}
-        });
+            this.setState(prevState => {
+                return {attempts : prevState.attempts - 1}
+            });
+        }   
     }
 
     nextQuestion() {
         this.props.nextPlayer();
-            this.generateQuestion(this.state.problem);
-            this.setState({
-                attempts : 3
-            });   
+        document.getElementById('answer').value = null;
+        this.generateQuestion(this.state.problem);
+        this.setState({
+            attempts : 3
+        });   
     }
 
     handleClick() {
