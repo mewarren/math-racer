@@ -42,10 +42,10 @@ export default class Question extends React.Component {
             this.nextQuestion();
         } else {
             console.log("incorrect!" + this.state.attempts);
-            answer.value = null;
             this.setState(prevState => {
                 return {attempts : prevState.attempts - 1}
             });
+            answer.value = null;
         }   
     }
 
@@ -59,7 +59,7 @@ export default class Question extends React.Component {
     }
 
     handleClick() {
-        if(this.state.attempts > 1) {
+        if(this.state.attempts > 0) {
             this.checkAnswer(); 
         } else {
             this.nextQuestion();           
