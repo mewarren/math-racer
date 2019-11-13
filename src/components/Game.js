@@ -43,17 +43,18 @@ export default class Game extends React.Component {
 
     addScore = (id, score) => {
         const { players, activePlayer } = this.state;
-        const currentPlayer = players[activePlayer-1];
-        // const updatedScore = currentPlayer.score;
-        console.log(id + "players score is" + score);
-        // this.setState({
-        //     players : 
-        // })
+        const currentScore = players[activePlayer-1].score;
+        
+        this.setState(prevState => ({
+            players : prevState.players
+                .map( el => el.id === id ? {
+                    ...el, score: currentScore + score
+                } : el )
+        }))
     }
 
 
     updateActivePlayer = () => {
-        // console.log('button was clicked!');
         if(this.state.activePlayer < this.state.numberOfPlayers){
             this.setState(prevState => {
                 return {activePlayer : prevState.activePlayer + 1}
