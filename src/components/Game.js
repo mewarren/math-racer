@@ -20,6 +20,16 @@ export default class Game extends React.Component {
         };
     }
 
+    newGame = () => {
+        this.setState({
+            numberOfPlayers : 0,
+            players : [],
+            subject : null,
+            activeGame: false,
+            activePlayer: 0
+        });
+    }
+
     setNumberOfPlayers = (number) => {
         this.setState({ 
             numberOfPlayers : parseInt(number) 
@@ -69,9 +79,8 @@ export default class Game extends React.Component {
         return ( 
             <div>
                 <header className="App-header">
-                    <h1>
-                    Math Racer
-                    </h1>
+                    <h1>Math Racer</h1>
+                    <input type="button" value="New Game" onClick={this.newGame}/>
                 </header>
                 <Players playersState={numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
                 <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
