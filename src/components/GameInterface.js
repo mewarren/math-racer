@@ -1,5 +1,6 @@
 import React from 'react';
 import Question from './Question';
+import StatusBar from './StatusBar';
 
 export default class GameInterface extends React.Component {
     constructor(props) {
@@ -28,6 +29,8 @@ export default class GameInterface extends React.Component {
         const { gameStatus, player, nextPlayer, addScore } = this.props;
         return((gameStatus !== false) ?
             <div>
+                <StatusBar player={player} />
+
                 {(this.state.playerReady===false) ?
                 <div>
                     <p> {player.name} are you ready</p>

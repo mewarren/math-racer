@@ -6,11 +6,13 @@ export default class StatusBar extends React.Component {
     // }
 
     render() {
-        const { playerInfo, activePlayer } = this.props;
-        return((this.props.gameStatus) ?
+        const { player } = this.props;
+        return((this.props.player) ?
             <div>
-                <h3>{playerInfo[activePlayer-1].name}</h3>
-                <h3>{playerInfo[activePlayer-1].score}</h3>
+                <h3>Player: {player.name}</h3>
+                <h3>Score:{player.score}</h3>
+                <h3>Remaining Attempts:</h3>
+                <h3>Round:</h3>
             </div> 
             : null
 

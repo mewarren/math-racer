@@ -15,7 +15,8 @@ export default class Game extends React.Component {
             players : [],
             subject : null,
             activeGame: false,
-            activePlayer: 0
+            activePlayer: 0,
+
         };
     }
 
@@ -67,10 +68,14 @@ export default class Game extends React.Component {
         const player = players[activePlayer-1];
         return ( 
             <div>
+                <header className="App-header">
+                    <h1>
+                    Math Racer
+                    </h1>
+                </header>
                 <Players playersState={numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
                 <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
                 <Subject playersState={numberOfPlayers} playerInfo={players} subject={subject} startGame={this.startGame}/>
-                <StatusBar gameStatus={activeGame} playerInfo={players} activePlayer={activePlayer}/>
                 <GameInterface gameStatus={activeGame} nextPlayer={this.updateActivePlayer} player={player} subject={subject} addScore={this.addScore}/>
             </div>
         );
