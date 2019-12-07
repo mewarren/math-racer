@@ -59,7 +59,7 @@ export default class Question extends React.Component {
     }
 
     handleClick() {
-        if(this.state.attempts > 0) {
+        if(this.state.attempts > 1) {
             this.checkAnswer(); 
         } else {
             this.nextQuestion();           
