@@ -6,20 +6,26 @@ export default class Question extends React.Component {
         this.generateQuestion = this.generateQuestion.bind(this);
         this.checkAnswer = this.checkAnswer.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.showAlert = this.showAlert.bind(this);
 
         this.state = {
             subject : this.props.subject,
             problem : null,
             answer : null,
-            attempts : 3
+            attempts : 3,
+            alert : false,
+            alertMessage : null
+
         };
     }
 
+    //Sets state with random math Q&A. 
     generateQuestion() {
         let getRandomInt = max => 
-            Math.floor(Math.random() * Math.floor(max));
-
+        Math.floor(Math.random() * Math.floor(max));
+        
         const operator = (this.state.subject === 'add') ? " + " : " - "; 
+        //Change difficulty with integers
         let problem = getRandomInt(9) + operator + getRandomInt(9);
 
         this.setState({
@@ -32,16 +38,17 @@ export default class Question extends React.Component {
         this.generateQuestion(this.state.problem);
      }
 
-    checkAnswer(){
+    checkAnswer() {
         let answer = document.getElementById('answer');
-        // console.log("does " + answer.value + ' = ' + this.state.answer );
         
         if(parseInt(answer.value) === this.state.answer) {
-            console.log("Correct!");
+            this.setState({alertMessage : 'Correct!'});
+            this.showAlert();
             this.props.handleScore(this.state.attempts);
             this.nextQuestion();
         } else {
-            console.log("incorrect!" + this.state.attempts);
+            this.setState({alertMessage : 'Incorrect!'});
+            this.showAlert();
             this.setState(prevState => {
                 return {attempts : prevState.attempts - 1}
             });
@@ -49,6 +56,22 @@ export default class Question extends React.Component {
         }   
     }
 
+    //Correct message
+    showAlert() {
+        this.setState({
+            alert : true,
+        });
+
+        setTimeout(
+            function() {
+                this.setState({
+                    alert : false
+                });
+            }.bind(this), 1500
+        );
+    }
+
+    //resets question
     nextQuestion() {
         this.props.nextPlayer();
         document.getElementById('answer').value = null;
