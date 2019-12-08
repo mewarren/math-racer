@@ -40,7 +40,7 @@ export default class Question extends React.Component {
 
     checkAnswer() {
         let answer = document.getElementById('answer');
-        
+        this.props.updateAttempts(this.state.attempts-1);
         if(parseInt(answer.value) === this.state.answer) {
             this.setState({alertMessage : 'Correct!'});
             this.showAlert();
@@ -55,30 +55,31 @@ export default class Question extends React.Component {
             answer.value = null;
         }   
     }
-
+    
     //Correct message
     showAlert() {
         this.setState({
             alert : true,
         });
-
+        
         setTimeout(
             function() {
                 this.setState({
                     alert : false
                 });
             }.bind(this), 1500
-        );
-    }
-
-    //resets question
+            );
+        }
+        
+        //resets question
     nextQuestion() {
         this.props.nextPlayer();
         document.getElementById('answer').value = null;
         this.generateQuestion(this.state.problem);
         this.setState({
             attempts : 3
-        });   
+        });  
+        this.props.updateAttempts(3); 
     }
 
     handleClick() {
