@@ -45,6 +45,7 @@ export default class Question extends React.Component {
             this.setState({alertMessage : 'Correct!'});
             this.showAlert();
             this.props.handleScore(this.state.attempts);
+            this.props.totalQuestions();
             this.nextQuestion();
         } else {
             this.setState({alertMessage : 'Incorrect!'});

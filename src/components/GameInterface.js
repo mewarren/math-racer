@@ -5,13 +5,16 @@ import StatusBar from './StatusBar';
 export default class GameInterface extends React.Component {
     constructor(props) {
         super(props);
+        
         this.handleClick = this.handleClick.bind(this);
         this.handleScore = this.handleScore.bind(this);
         this.updateAttempts = this.updateAttempts.bind(this);
+        this.updateTotalQuestions = this.updateTotalQuestions.bind(this);
 
         this.state = { 
             playerReady : false,
-            attempts : 3
+            attempts : 3,
+            totalQuestions : 0
         };
     }
 
@@ -19,13 +22,11 @@ export default class GameInterface extends React.Component {
         this.setState({
             playerReady : true,
         });
-        // this.props.nextPlayer();
     }
 
     handleScore(score) {
         const { player, addScore } = this.props;
-        addScore(player.id, score);
-       
+        addScore(player.id, score);    
     }
 
     updateAttempts(attempts) {
@@ -34,14 +35,21 @@ export default class GameInterface extends React.Component {
         });
     }
 
+    updateTotalQuestions() {
+        //end game goes here
+        this.setState(prevState => {
+            return {totalQuestions : prevState.totalQuestions + 1}
+        });
+    }
+
     render() {
         const { gameStatus, player, nextPlayer } = this.props;
-        const { attempts } = this.state;
+        const { attempts, playerReady } = this.state;
         return((gameStatus !== false) ?
             <div>
-                <StatusBar player={player} attempts={attempts}/>
+                <StatusBar player={player} playerReady={playerReady} attempts={attempts}/>
 
-                {(this.state.playerReady===false) ?
+                {(playerReady===false) ?
                     <div>
                         <p> {player.name} are you ready</p>
                         <button onClick={this.handleClick}>Let's Go!</button> 
@@ -51,6 +59,7 @@ export default class GameInterface extends React.Component {
                         nextPlayer={nextPlayer} 
                         handleScore={this.handleScore} 
                         updateAttempts={this.updateAttempts}
+                        totalQuestions={this.updateTotalQuestions}
                     />
                 }
            
