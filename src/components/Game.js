@@ -1,9 +1,11 @@
 import React from 'react';
+import './css/game.css';
 import Players from './Players';
 import Player from './Player';
 import Subject from './Subject';
 import StatusBar from './StatusBar';
 import GameInterface from './GameInterface';
+
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -77,8 +79,8 @@ export default class Game extends React.Component {
         const { numberOfPlayers, players, subject, activeGame, activePlayer } = this.state;
         const player = players[activePlayer-1];
         return ( 
-            <div>
-                <header className="App-header">
+            <div className="game">
+                <header>
                     <h1>Math Racer</h1>
                     <input type="button" value="New Game" onClick={this.newGame}/>
                 </header>
