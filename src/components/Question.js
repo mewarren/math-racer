@@ -91,6 +91,7 @@ export default class Question extends React.Component {
 
     render() {
         return(
+            (this.state.alert) ? <h2>{this.state.alertMessage}</h2> : 
             <div>
                 <p>What is the answer to</p>
                 <h4>{this.state.problem}</h4>
