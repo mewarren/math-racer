@@ -21,7 +21,7 @@ export default class Player extends React.Component {
         const { playerInfo, playersState } = this.props;
         return ((playerInfo.length < playersState) ?
             <div>
-                <p>Please name for Player {playerInfo.length + 1}.</p>
+                <p>Please enter name for Player {playerInfo.length + 1}.</p>
                 <input type="text" name="playerName" id="playerName"></input>
                 <button onClick={this.handleClick}>Next</button>
             </div> 

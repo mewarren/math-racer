@@ -2,7 +2,6 @@ import React from 'react';
 import './css/game.css';
 import Players from './Players';
 import Player from './Player';
-import Subject from './Subject';
 import GameInterface from './GameInterface';
 
 
@@ -14,10 +13,8 @@ export default class Game extends React.Component {
         this.state = {
             numberOfPlayers : 0,
             players : [],
-            subject : null,
             activeGame: false,
             activePlayer: 0,
-
         };
     }
 
@@ -25,7 +22,6 @@ export default class Game extends React.Component {
         this.setState({
             numberOfPlayers : 0,
             players : [],
-            subject : null,
             activeGame: false,
             activePlayer: 0
         });
@@ -43,19 +39,18 @@ export default class Game extends React.Component {
         this.setState({
             players : updatedPlayers
         });
+        this.startGame();
     }
-
-    setSubject = (subject) => {
-        this.setState({
-            subject : subject
-        });
-    }
-
+    
     startGame = () => {
-        this.setState({ 
-            activeGame : true,
-            activePlayer : 1 
-        });
+        console.log('startGame was called');
+        const { players, numberOfPlayers } = this.state;
+        if(players.length === numberOfPlayers){
+            this.setState({ 
+                activeGame : true,
+                activePlayer : 1 
+            });
+        } else {return};
     }
 
     addScore = (id, score) => {
@@ -80,7 +75,7 @@ export default class Game extends React.Component {
     }
 
     render() {
-        const { numberOfPlayers, players, subject, activeGame, activePlayer } = this.state;
+        const { numberOfPlayers, players, activeGame, activePlayer } = this.state;
         const player = players[activePlayer-1];
         return ( 
             <div className="game">
@@ -90,15 +85,7 @@ export default class Game extends React.Component {
                 </header>
                 <Players playersState={numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
                 <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
-                
-                {(!this.state.activeGame) ? 
-                    <div>
-                        <Subject onClick={this.setSubject}/> 
-                        <button onClick={this.startGame}>Start</button>
-                    </div>
-                    : null}
-
-                <GameInterface gameStatus={activeGame} nextPlayer={this.updateActivePlayer} player={player} subject={subject} addScore={this.addScore}/>
+                <GameInterface gameStatus={activeGame} nextPlayer={this.updateActivePlayer} player={player} addScore={this.addScore}/>
             </div>
         );
     }

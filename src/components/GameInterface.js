@@ -1,6 +1,7 @@
 import React from 'react';
 import Question from './Question';
 import StatusBar from './StatusBar';
+import Subject from './Subject';
 
 export default class GameInterface extends React.Component {
     constructor(props) {
@@ -12,7 +13,6 @@ export default class GameInterface extends React.Component {
             totalQuestions : 0,
             alert : false,
             alertMessage : null,
-            attempts : 3
         };
     }
 
@@ -47,7 +47,7 @@ export default class GameInterface extends React.Component {
     incorrectAnswer = () => {
         console.log('Incorrect!');
     }
-    
+
     //Pasted in from Question
     checkAnswer = () => {
         let answer = document.getElementById('answer');
@@ -108,12 +108,12 @@ export default class GameInterface extends React.Component {
 
 
     render() {
-        const { gameStatus, player, nextPlayer } = this.props;
+        const { gameStatus, player } = this.props;
         const { attempts, playerReady } = this.state;
         return((gameStatus !== false) ?
             <div>
                 <StatusBar player={player} playerReady={playerReady} attempts={attempts}/>
-
+                <Subject />
                 {(playerReady===false) ?
                     <div>
                         <p> {player.name} are you ready</p>
