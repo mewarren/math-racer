@@ -7,12 +7,12 @@ export default class Players extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(button) {
+    handleClick = (button) => {
         this.props.setPlayers(button.currentTarget.value);
     }
     
     render() {       
-        return ((!this.props.playersState) ?
+        return ((!this.props.numberOfPlayers) ?
             <div>
                 <p>Select the number of players</p>
                 <div className="selectPlayers">

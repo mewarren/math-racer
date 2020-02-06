@@ -13,6 +13,7 @@ export default class GameInterface extends React.Component {
             totalQuestions : 0,
             alert : false,
             alertMessage : null,
+            subject : null
         };
     }
 
@@ -106,26 +107,36 @@ export default class GameInterface extends React.Component {
 
     ////////////////////////////////////////////////////////////////
 
+    renderSubject = () => {
+        const { players, numberOfPlayers } = this.props;
+
+        if(this.state.subject===null && numberOfPlayers > 0 && numberOfPlayers === players.length) {
+            return <Subject /> 
+        } else { return null};
+    }
 
     render() {
         const { gameStatus, player } = this.props;
         const { attempts, playerReady } = this.state;
-        return((gameStatus !== false) ?
+        return(
             <div>
                 <StatusBar player={player} playerReady={playerReady} attempts={attempts}/>
-                <Subject />
-                {(playerReady===false) ?
+
+                {this.renderSubject()}
+
+                {/* {(playerReady===false) ?
                     <div>
                         <p> {player.name} are you ready</p>
                         <button onClick={this.playerReady}>Let's Go!</button> 
-                    </div> :
+                    </div> 
+                    :
                     <div>
-                        (this.state.alert) ? <h2>{this.state.alertMessage}</h2> : 
-                        <Question subject={this.props.subject} />
+                        {(this.state.alert) ? <h2>{this.state.alertMessage}</h2> : 
+                        <Question subject={this.props.subject} />}
                     </div>
-                }
+                } */}
            
-            </div> : null
+            </div> 
         );
     }
 }

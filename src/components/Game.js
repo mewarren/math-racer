@@ -39,7 +39,7 @@ export default class Game extends React.Component {
         this.setState({
             players : updatedPlayers
         });
-        this.startGame();
+        // this.startGame();
     }
     
     startGame = () => {
@@ -83,9 +83,28 @@ export default class Game extends React.Component {
                     <h1>Math Racer</h1>
                     <input type="button" value="New Game" onClick={this.newGame}/>
                 </header>
-                <Players playersState={numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
-                <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
-                <GameInterface gameStatus={activeGame} nextPlayer={this.updateActivePlayer} player={player} addScore={this.addScore}/>
+                
+                <Players 
+                    numberOfPlayers={numberOfPlayers} 
+                    setPlayers={this.setNumberOfPlayers}
+                />
+
+                <Player 
+                    numberOfPlayers={numberOfPlayers} 
+                    players={players} 
+                    addPlayerName={this.addPlayerInfo}
+                />
+
+                <GameInterface 
+                    start ={this.startGame} 
+                    gameStatus={activeGame} 
+                    nextPlayer={this.updateActivePlayer} 
+                    player={player} 
+                    addScore={this.addScore}
+                    numberOfPlayers={numberOfPlayers} 
+                    players={players} 
+                />
+
             </div>
         );
     }
