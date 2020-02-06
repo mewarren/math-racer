@@ -8,10 +8,6 @@ export default class Question extends React.Component {
             subject : this.props.subject,
             problem : null,
             answer : null,
-            attempts : 3,
-            alert : false,
-            alertMessage : null
-
         };
     }
 
@@ -54,44 +50,9 @@ export default class Question extends React.Component {
             answer.value = null;
         }   
     }
-    
-    //Correct message
-    showAlert = () => {
-        this.setState({
-            alert : true,
-        });
-        
-        setTimeout(
-            function() {
-                this.setState({
-                    alert : false
-                });
-            }.bind(this), 1500
-            );
-        }
-        
-        //resets question
-    nextQuestion = () => {
-        this.props.nextPlayer();
-        document.getElementById('answer').value = null;
-        this.generateQuestion(this.state.problem);
-        this.setState({
-            attempts : 3
-        });  
-        this.props.updateAttempts(3); 
-    }
-
-    handleClick = () => {
-        if(this.state.attempts > 1) {
-            this.checkAnswer(); 
-        } else {
-            this.nextQuestion();           
-        }  
-    }
 
     render() {
         return(
-            (this.state.alert) ? <h2>{this.state.alertMessage}</h2> : 
             <div>
                 <p>What is the answer to</p>
                 <h4>{this.state.problem}</h4>

@@ -3,7 +3,6 @@ import './css/game.css';
 import Players from './Players';
 import Player from './Player';
 import Subject from './Subject';
-import StatusBar from './StatusBar';
 import GameInterface from './GameInterface';
 
 
@@ -46,9 +45,14 @@ export default class Game extends React.Component {
         });
     }
 
-    startGame = (subject) => {
+    setSubject = (subject) => {
+        this.setState({
+            subject : subject
+        });
+    }
+
+    startGame = () => {
         this.setState({ 
-            subject : subject,
             activeGame : true,
             activePlayer : 1 
         });
@@ -86,7 +90,14 @@ export default class Game extends React.Component {
                 </header>
                 <Players playersState={numberOfPlayers} setPlayers={this.setNumberOfPlayers}/>
                 <Player playersState={numberOfPlayers} playerInfo={players} addPlayerName={this.addPlayerInfo}/>
-                <Subject playersState={numberOfPlayers} playerInfo={players} subject={subject} startGame={this.startGame}/>
+                
+                {(!this.state.activeGame) ? 
+                    <div>
+                        <Subject onClick={this.setSubject}/> 
+                        <button onClick={this.startGame}>Start</button>
+                    </div>
+                    : null}
+
                 <GameInterface gameStatus={activeGame} nextPlayer={this.updateActivePlayer} player={player} subject={subject} addScore={this.addScore}/>
             </div>
         );
