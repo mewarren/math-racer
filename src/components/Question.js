@@ -3,10 +3,6 @@ import React from 'react';
 export default class Question extends React.Component {
     constructor(props) {
         super(props);
-        this.generateQuestion = this.generateQuestion.bind(this);
-        this.checkAnswer = this.checkAnswer.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.showAlert = this.showAlert.bind(this);
 
         this.state = {
             subject : this.props.subject,
@@ -20,7 +16,7 @@ export default class Question extends React.Component {
     }
 
     //Sets state with random math Q&A. 
-    generateQuestion() {
+    generateQuestion = () => {
         let getRandomInt = max => 
         Math.floor(Math.random() * Math.floor(max));
         
@@ -34,19 +30,21 @@ export default class Question extends React.Component {
         })      
     }
 
-    componentDidMount(){
+    componentDidMount = () => {
         this.generateQuestion(this.state.problem);
      }
 
-    checkAnswer() {
+    checkAnswer = () => {
         let answer = document.getElementById('answer');
-        this.props.updateAttempts(this.state.attempts-1);
+        // this.props.updateAttempts(this.state.attempts-1);
         if(parseInt(answer.value) === this.state.answer) {
             this.setState({alertMessage : 'Correct!'});
             this.showAlert();
-            this.props.handleScore(this.state.attempts);
-            this.props.totalQuestions();
-            this.nextQuestion();
+            if(!this.state.alertMessage){
+                this.props.handleScore(this.state.attempts);
+                this.props.totalQuestions();
+                this.nextQuestion();
+            }
         } else {
             this.setState({alertMessage : 'Incorrect!'});
             this.showAlert();
@@ -58,7 +56,7 @@ export default class Question extends React.Component {
     }
     
     //Correct message
-    showAlert() {
+    showAlert = () => {
         this.setState({
             alert : true,
         });
@@ -73,7 +71,7 @@ export default class Question extends React.Component {
         }
         
         //resets question
-    nextQuestion() {
+    nextQuestion = () => {
         this.props.nextPlayer();
         document.getElementById('answer').value = null;
         this.generateQuestion(this.state.problem);
@@ -83,7 +81,7 @@ export default class Question extends React.Component {
         this.props.updateAttempts(3); 
     }
 
-    handleClick() {
+    handleClick = () => {
         if(this.state.attempts > 1) {
             this.checkAnswer(); 
         } else {

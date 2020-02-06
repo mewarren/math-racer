@@ -6,11 +6,6 @@ export default class GameInterface extends React.Component {
     constructor(props) {
         super(props);
         
-        this.handleClick = this.handleClick.bind(this);
-        this.handleScore = this.handleScore.bind(this);
-        this.updateAttempts = this.updateAttempts.bind(this);
-        this.updateTotalQuestions = this.updateTotalQuestions.bind(this);
-
         this.state = { 
             playerReady : false,
             attempts : 3,
@@ -18,24 +13,24 @@ export default class GameInterface extends React.Component {
         };
     }
 
-    handleClick() {
+    handleClick = () => {
         this.setState({
             playerReady : true,
         });
     }
 
-    handleScore(score) {
+    handleScore = (score) => {
         const { player, addScore } = this.props;
         addScore(player.id, score);    
     }
 
-    updateAttempts(attempts) {
+    updateAttempts = (attempts) => {
         this.setState({
             attempts : attempts
         });
     }
 
-    updateTotalQuestions() {
+    updateTotalQuestions = () => {
         //end game goes here
         this.setState(prevState => {
             return {totalQuestions : prevState.totalQuestions + 1}
