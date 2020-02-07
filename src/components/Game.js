@@ -4,7 +4,6 @@ import Players from './Players';
 import Player from './Player';
 import GameInterface from './GameInterface';
 
-
 export default class Game extends React.Component {
     constructor(props) {
         super(props);
@@ -17,6 +16,7 @@ export default class Game extends React.Component {
         };
     }
 
+    //resets to default state
     newGame = () => {
         this.setState({
             numberOfPlayers : 0,
@@ -26,13 +26,14 @@ export default class Game extends React.Component {
         });
     }
 
+    //sets number of players for game
     setNumberOfPlayers = (number) => {
         this.setState({ 
             numberOfPlayers : parseInt(number) 
         });
     }
 
-    //add indivdual player objects to players array 
+    //adds indivdual player objects to players array 
     addPlayerInfo = (player) => {
         let updatedPlayers = [...this.state.players, player];
         this.setState({
@@ -40,16 +41,15 @@ export default class Game extends React.Component {
         });
     }
     
+    //initiates the game
     startGame = () => {
-        const { players, numberOfPlayers } = this.state;
-        if(players.length === numberOfPlayers){
-            this.setState({ 
+        this.setState({ 
                 activeGame : true,
                 activePlayer : 1 
             });
-        } else {return};
     }
 
+    //adds to player's previous score
     addScore = (id, score) => {
         const { players, activePlayer } = this.state;
         const currentScore = players[activePlayer-1].score;
@@ -62,7 +62,7 @@ export default class Game extends React.Component {
         }))
     }
 
-
+    //cycles through players
     updateActivePlayer = () => {
         if(this.state.activePlayer < this.state.numberOfPlayers){
             this.setState(prevState => {
@@ -78,19 +78,23 @@ export default class Game extends React.Component {
             <div className="game">
                 <header>
                     <h1>Math Racer</h1>
-                    <input type="button" value="New Game" onClick={this.newGame}/>
+                    <input 
+                        type="button" 
+                        value="New Game" 
+                        onClick={this.newGame}
+                    />
                 </header>
                 
                 <Players 
                     numberOfPlayers={numberOfPlayers} 
                     setPlayers={this.setNumberOfPlayers}
-                />
+                    />
 
                 <Player 
                     numberOfPlayers={numberOfPlayers} 
                     players={players} 
                     addPlayerName={this.addPlayerInfo}
-                />
+                    />
 
                 <GameInterface 
                     start ={this.startGame} 
@@ -101,7 +105,6 @@ export default class Game extends React.Component {
                     numberOfPlayers={numberOfPlayers} 
                     players={players} 
                 />
-
             </div>
         );
     }
