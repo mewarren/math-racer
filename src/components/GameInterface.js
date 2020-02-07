@@ -1,5 +1,5 @@
 import React from 'react';
-// import Question from './Question';
+import Question from './Question';
 import StatusBar from './StatusBar';
 import Subject from './Subject';
 
@@ -111,10 +111,8 @@ export default class GameInterface extends React.Component {
         const { players, numberOfPlayers, start, gameStatus} = this.props;
         console.log('renderSubject called!');
         if(numberOfPlayers > 0 && numberOfPlayers === players.length) {
-            return (
-                
-                    <Subject startGame={start} gameStatus={gameStatus}/>
-                
+            return (         
+                <Subject startGame={start} gameStatus={gameStatus}/>   
             );
         } else { return null};
     }

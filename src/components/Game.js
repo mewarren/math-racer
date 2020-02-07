@@ -9,7 +9,6 @@ export default class Game extends React.Component {
     constructor(props) {
         super(props);
 
-
         this.state = {
             numberOfPlayers : 0,
             players : [],
@@ -39,11 +38,9 @@ export default class Game extends React.Component {
         this.setState({
             players : updatedPlayers
         });
-        // this.startGame();
     }
     
     startGame = () => {
-        console.log('startGame was called');
         const { players, numberOfPlayers } = this.state;
         if(players.length === numberOfPlayers){
             this.setState({ 
