@@ -1,5 +1,5 @@
 import React from 'react';
-import Question from './Question';
+// import Question from './Question';
 import StatusBar from './StatusBar';
 import Subject from './Subject';
 
@@ -13,7 +13,7 @@ export default class GameInterface extends React.Component {
             totalQuestions : 0,
             alert : false,
             alertMessage : null,
-            subject : null
+            startMessage : 'Please choose a subject'
         };
     }
 
@@ -106,23 +106,28 @@ export default class GameInterface extends React.Component {
     }
 
     ////////////////////////////////////////////////////////////////
-
+    
     renderSubject = () => {
-        const { players, numberOfPlayers } = this.props;
-
-        if(this.state.subject===null && numberOfPlayers > 0 && numberOfPlayers === players.length) {
-            return <Subject /> 
+        const { players, numberOfPlayers, start, gameStatus} = this.props;
+        console.log('renderSubject called!');
+        if(numberOfPlayers > 0 && numberOfPlayers === players.length) {
+            return (
+                
+                    <Subject startGame={start} gameStatus={gameStatus}/>
+                
+            );
         } else { return null};
     }
 
     render() {
-        const { gameStatus, player } = this.props;
+        const { player } = this.props;
         const { attempts, playerReady } = this.state;
         return(
-            <div>
+            <div className="gameInterface">
                 <StatusBar player={player} playerReady={playerReady} attempts={attempts}/>
 
                 {this.renderSubject()}
+
 
                 {/* {(playerReady===false) ?
                     <div>

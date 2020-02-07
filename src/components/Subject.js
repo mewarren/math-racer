@@ -5,29 +5,43 @@ export default class Subject extends React.Component {
         super(props);
 
         this.state = {
-            subject : null
+            subject : null,
+            showStart : false
         };
     }
 
     setSubject = (button) => {
+        let subject = button.currentTarget.value;
         this.setState({
-            subject : button.currentTarget.value
+            subject : subject,
+            showStart : true
         });
-        this.props.setSubject(this.state.subject);
     }
 
-    // handleClick = (button) => {
-    // }
+    startGame = () => {
+        this.props.startGame();
+        this.setState({
+            showStart: false
+        });           
+    }
 
-    //  Subject will most likely persist to allow user to 
-    //  toggle between subjects while playing.
+    showStart = () => {
+        if(!this.props.gameStatus && this.state.showStart) {
+            return (<button onClick={this.startGame}>Start</button>);
+        } else { 
+            return
+        }
+    }
+
     render() {       
         return (
             <div className="selectSubject">
-                {(!this.state.subject) ? <p>Select your subject</p> : null }
-                <button value="add" onClick={this.setSubject}>Addition</button>
-                <button value="sub" onClick={this.setSubject}>Subtraction</button>
-                {/* <button onClick={this.handleClick}>Start</button> */}
+                { (!this.state.subject) ? <p>Select your subject</p> : null }
+                <div className="subjects">
+                    <button value="add" onClick={this.setSubject}>Addition</button>
+                    <button value="sub" onClick={this.setSubject}>Subtraction</button>
+                </div>
+                { this.showStart() }
             </div>
         )
     }
