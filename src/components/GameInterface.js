@@ -117,18 +117,25 @@ export default class GameInterface extends React.Component {
         } else { return null};
     }
 
+    renderPlayerReady = () => {
+        if(!this.state.playerReady) {
+            return (
+                <PlayerReady 
+                    playerReady={this.playerReady}
+                    player={this.props.player}
+                />
+            );
+        } else { return null; }
+    }
+
     render() {
         const { player } = this.props;
         const { attempts, playerReady } = this.state;
         return(
             <div className="gameInterface">
                 <StatusBar player={player} playerReady={playerReady} attempts={attempts}/>
-
+                {this.renderPlayerReady()}
                 {this.renderSubject()}
-                <PlayerReady 
-                    playerReady={this.playerReady}
-                    player={this.props.player}
-                />
 
                 { playerReady ? <Question subject={this.props.subject} /> : null }
             </div> 
