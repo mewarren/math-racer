@@ -51,6 +51,40 @@ export default class Question extends React.Component {
         }   
     }
 
+    //Correct message
+    showAlert = () => {
+        this.setState({
+            alert : true,
+        });
+        
+        setTimeout(
+            function() {
+                this.setState({
+                    alert : false
+                });
+            }.bind(this), 1500
+            );
+        }
+        
+    //resets question
+    nextQuestion = () => {
+        this.nextPlayer();
+        document.getElementById('answer').value = null;
+        this.generateQuestion(this.state.problem);
+        this.setState({
+            attempts : 3
+        });  
+        this.props.updateAttempts(3); 
+    }
+
+    handleClick = () => {
+        if(this.state.attempts > 1) {
+            this.checkAnswer(); 
+        } else {
+            this.nextQuestion();           
+        }  
+    }
+
     render() {
         return(
             <div>
