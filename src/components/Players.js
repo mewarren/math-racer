@@ -2,10 +2,10 @@ import React from 'react';
 import './css/players.css';
 
 export default class Players extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.handleClick = this.handleClick.bind(this);
+    // }
 
     handleClick = (button) => {
         this.props.setPlayers(button.currentTarget.value);

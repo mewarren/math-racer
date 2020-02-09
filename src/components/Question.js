@@ -11,10 +11,10 @@ export default class Question extends React.Component {
         };
     }
 
-    //Sets state with random math Q&A. 
+    //Sets state with randomly generated math Q&A. 
     generateQuestion = () => {
         let getRandomInt = max => 
-        Math.floor(Math.random() * Math.floor(max));
+            Math.floor(Math.random() * Math.floor(max));
         
         const operator = (this.state.subject === 'add') ? " + " : " - "; 
         //Change difficulty with integers

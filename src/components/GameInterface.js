@@ -2,6 +2,7 @@ import React from 'react';
 import Question from './Question';
 import StatusBar from './StatusBar';
 import Subject from './Subject';
+import PlayerReady from './PlayerReady';
 
 export default class GameInterface extends React.Component {
     constructor(props) {
@@ -13,7 +14,6 @@ export default class GameInterface extends React.Component {
             totalQuestions : 0,
             alert : false,
             alertMessage : null,
-            startMessage : 'Please choose a subject'
         };
     }
 
@@ -49,7 +49,7 @@ export default class GameInterface extends React.Component {
         console.log('Incorrect!');
     }
 
-    //Pasted in from Question
+    //Pasted in from Question///////////////////////////////////////////////////////////
     checkAnswer = () => {
         let answer = document.getElementById('answer');
         // this.props.updateAttempts(this.state.attempts-1);
@@ -86,7 +86,7 @@ export default class GameInterface extends React.Component {
             );
         }
         
-        //resets question
+    //resets question
     nextQuestion = () => {
         this.nextPlayer();
         document.getElementById('answer').value = null;
@@ -105,7 +105,7 @@ export default class GameInterface extends React.Component {
         }  
     }
 
-    ////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////
     
     renderSubject = () => {
         const { players, numberOfPlayers, start, gameStatus} = this.props;
@@ -125,20 +125,12 @@ export default class GameInterface extends React.Component {
                 <StatusBar player={player} playerReady={playerReady} attempts={attempts}/>
 
                 {this.renderSubject()}
+                <PlayerReady 
+                    playerReady={this.playerReady}
+                    player={this.props.player}
+                />
 
-
-                {/* {(playerReady===false) ?
-                    <div>
-                        <p> {player.name} are you ready</p>
-                        <button onClick={this.playerReady}>Let's Go!</button> 
-                    </div> 
-                    :
-                    <div>
-                        {(this.state.alert) ? <h2>{this.state.alertMessage}</h2> : 
-                        <Question subject={this.props.subject} />}
-                    </div>
-                } */}
-           
+                { playerReady ? <Question subject={this.props.subject} /> : null }
             </div> 
         );
     }
