@@ -3,23 +3,21 @@ import React from 'react';
 export default class Question extends React.Component {
     constructor(props) {
         super(props);
-        this.generateQuestion = this.generateQuestion.bind(this);
-        this.checkAnswer = this.checkAnswer.bind(this);
-        this.handleClick = this.handleClick.bind(this);
 
         this.state = {
             subject : this.props.subject,
             problem : null,
             answer : null,
-            attempts : 3
         };
     }
 
-    generateQuestion() {
+    //Sets state with randomly generated math Q&A. 
+    generateQuestion = () => {
         let getRandomInt = max => 
             Math.floor(Math.random() * Math.floor(max));
-
+        
         const operator = (this.state.subject === 'add') ? " + " : " - "; 
+        //Change difficulty with integers
         let problem = getRandomInt(9) + operator + getRandomInt(9);
 
         this.setState({
@@ -28,38 +26,29 @@ export default class Question extends React.Component {
         })      
     }
 
-    componentDidMount(){
+    componentDidMount = () => {
         this.generateQuestion(this.state.problem);
      }
 
-    checkAnswer(){
+    checkAnswer = () => {
         let answer = document.getElementById('answer');
-        console.log("does " + answer.value + ' = ' + this.state.answer );
-        
+        // this.props.updateAttempts(this.state.attempts-1);
         if(parseInt(answer.value) === this.state.answer) {
-            console.log("Correct!");
-        } else {console.log("incorrect!");}
-        
-        answer.value = null;
-        this.setState(prevState => {
-            return {attempts : prevState.attempts - 1}
-        });
-    }
-
-    nextQuestion() {
-        this.props.nextPlayer();
-            this.generateQuestion(this.state.problem);
-            this.setState({
-                attempts : 3
-            });   
-    }
-
-    handleClick() {
-        if(this.state.attempts > 1) {
-            this.checkAnswer(); 
+            this.setState({alertMessage : 'Correct!'});
+            this.showAlert();
+            if(!this.state.alertMessage){
+                this.props.handleScore(this.state.attempts);
+                this.props.totalQuestions();
+                this.nextQuestion();
+            }
         } else {
-            this.nextQuestion();           
-        }  
+            this.setState({alertMessage : 'Incorrect!'});
+            this.showAlert();
+            this.setState(prevState => {
+                return {attempts : prevState.attempts - 1}
+            });
+            answer.value = null;
+        }   
     }
 
     render() {

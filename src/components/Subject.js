@@ -3,35 +3,46 @@ import React from 'react';
 export default class Subject extends React.Component {
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
-        this.handleStart = this.handleStart.bind(this);
 
         this.state = {
-            subject : null
+            subject : null,
+            showStart : false
         };
     }
 
-    handleClick(button) {
+    setSubject = (button) => {
+        let subject = button.currentTarget.value;
         this.setState({
-            subject : button.currentTarget.value
-        }); 
+            subject : subject,
+            showStart : true
+        });
     }
 
-    handleStart(){
-        this.props.startGame(this.state.subject);
+    startGame = () => {
+        this.props.startGame();
+        this.setState({
+            showStart: false
+        });           
     }
 
-    render() {
-        const { playersState, playerInfo, subject } = this.props;
-        
-        return ((subject===null && playersState > 0 && playersState === playerInfo.length) ?
+    showStart = () => {
+        if(!this.props.gameStatus && this.state.showStart) {
+            return (<button onClick={this.startGame}>Start</button>);
+        } else { 
+            return
+        }
+    }
+
+    render() {       
+        return (
             <div className="selectSubject">
-                <p>Select your subject</p>
-                <button value="add" onClick={this.handleClick}>Addition</button>
-                <button value="sub" onClick={this.handleClick}>Subtraction</button>
-                <button onClick={this.handleStart}>Start</button>
+                { (!this.state.subject) ? <p>Select your subject</p> : null }
+                <div className="subjects">
+                    <button value="add" onClick={this.setSubject}>Addition</button>
+                    <button value="sub" onClick={this.setSubject}>Subtraction</button>
+                </div>
+                { this.showStart() }
             </div>
-            : null
-        );
+        )
     }
 }

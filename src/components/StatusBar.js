@@ -1,4 +1,5 @@
 import React from 'react';
+import './css/statusBar.css';
 
 export default class StatusBar extends React.Component {
     // constructor(props) {
@@ -6,11 +7,13 @@ export default class StatusBar extends React.Component {
     // }
 
     render() {
-        const { playerInfo, activePlayer } = this.props;
-        return((this.props.gameStatus) ?
-            <div>
-                <h3>{playerInfo[activePlayer-1].name}</h3>
-                <h3>{playerInfo[activePlayer-1].score}</h3>
+        const { player, attempts } = this.props;
+        return((this.props.player) && (this.props.playerReady) ?
+            <div className="statusBar">
+                <h3>Player: {player.name}</h3>
+                <h3>Score:{player.score}</h3>
+                <h3>Remaining Attempts:{attempts}</h3>
+                {/* <h3>Round:</h3> */}
             </div> 
             : null
 
