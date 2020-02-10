@@ -14,12 +14,19 @@ export default class GameInterface extends React.Component {
             totalQuestions : 0,
             alert : false,
             alertMessage : null,
+            subject : null
         };
     }
 
     playerReady = () => {
         this.setState({
             playerReady : true,
+        });
+    }
+
+    updateSubject = (subject) => {
+        this.setState({
+            subject : subject
         });
     }
 
@@ -41,20 +48,16 @@ export default class GameInterface extends React.Component {
         });
     }
     
-    correctAnswer = () => {
-        console.log('Correct!');
-    }
-
-    incorrectAnswer = () => {
-        console.log('Incorrect!');
-    }
-    
     renderSubject = () => {
         const { players, numberOfPlayers, start, gameStatus} = this.props;
         console.log('renderSubject called!');
         if(numberOfPlayers > 0 && numberOfPlayers === players.length) {
             return (         
-                <Subject startGame={start} gameStatus={gameStatus}/>   
+                <Subject 
+                    startGame={start} 
+                    gameStatus={gameStatus}
+                    updateSubject={this.updateSubject}    
+                />   
             );
         } else { return null};
     }
@@ -71,15 +74,24 @@ export default class GameInterface extends React.Component {
     }
 
     render() {
-        const { player } = this.props;
-        const { attempts, playerReady } = this.state;
+        const { player, nextPlayer } = this.props;
+        const { attempts, playerReady, subject } = this.state;
         return(
             <div className="gameInterface">
                 <StatusBar player={player} playerReady={playerReady} attempts={attempts}/>
                 {this.renderPlayerReady()}
                 {this.renderSubject()}
 
-                { playerReady ? <Question subject={this.props.subject} /> : null }
+                { playerReady ? 
+                    <Question 
+                        subject={subject} 
+                        updateAttempts={this.updateAttempts}
+                        handleScore={this.handleScore}
+                        totalQuestions={this.updateTotalQuestions}
+                        nextPlayer={nextPlayer}
+                    /> 
+                    : null 
+                }
             </div> 
         );
     }
