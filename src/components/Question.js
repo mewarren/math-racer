@@ -1,4 +1,5 @@
 import React from 'react';
+import AlertMessage from './AlertMessage';
 
 export default class Question extends React.Component {
     constructor(props) {
@@ -97,13 +98,24 @@ export default class Question extends React.Component {
         }  
     }
 
+    handleRender = () => {
+        if(this.state.alert) {
+            return <AlertMessage message={this.state.alertMessage} />
+        } else {
+            return (
+                <div>
+                    <p>What is the answer to</p>
+                    <h4>{this.state.problem}</h4>
+                    <input type="text" name="answer" id="answer"></input>
+                    <button onClick={this.handleClick}>Check</button>
+                </div>
+            )
+        }
+    }
     render() {
         return(
             <div>
-                <p>What is the answer to</p>
-                <h4>{this.state.problem}</h4>
-                <input type="text" name="answer" id="answer"></input>
-                <button onClick={this.handleClick}>Check</button>
+                {this.handleRender()}
             </div>
         );
     }
