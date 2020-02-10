@@ -16,6 +16,7 @@ export default class Subject extends React.Component {
             subject : subject,
             showStart : true
         });
+        this.props.updateSubject(subject);
     }
 
     startGame = () => {

@@ -8,6 +8,9 @@ export default class Question extends React.Component {
             subject : this.props.subject,
             problem : null,
             answer : null,
+            alert : false,
+            alertMessage : null,
+            attempts : 3
         };
     }
 
@@ -34,21 +37,30 @@ export default class Question extends React.Component {
         let answer = document.getElementById('answer');
         // this.props.updateAttempts(this.state.attempts-1);
         if(parseInt(answer.value) === this.state.answer) {
-            this.setState({alertMessage : 'Correct!'});
+            this.correct();
+        } else {
+            this.incorrect();
+        }   
+    }
+
+    correct = () => {
+        this.setState({alertMessage : 'Correct!'});
             this.showAlert();
             if(!this.state.alertMessage){
                 this.props.handleScore(this.state.attempts);
                 this.props.totalQuestions();
                 this.nextQuestion();
             }
-        } else {
-            this.setState({alertMessage : 'Incorrect!'});
+    }
+
+    incorrect = () => {
+        this.setState({alertMessage : 'Incorrect!'});
             this.showAlert();
             this.setState(prevState => {
                 return {attempts : prevState.attempts - 1}
             });
-            answer.value = null;
-        }   
+            this.props.updateAttempts(this.state.attempts-1);
+            document.getElementById('answer').value = null;
     }
 
     //Correct message
@@ -68,7 +80,7 @@ export default class Question extends React.Component {
         
     //resets question
     nextQuestion = () => {
-        this.nextPlayer();
+        this.props.nextPlayer();
         document.getElementById('answer').value = null;
         this.generateQuestion(this.state.problem);
         this.setState({
