@@ -1,4 +1,5 @@
 import React from 'react';
+import AlertMessage from './AlertMessage';
 
 export default class Question extends React.Component {
     constructor(props) {
@@ -33,34 +34,25 @@ export default class Question extends React.Component {
         this.generateQuestion(this.state.problem);
      }
 
-    checkAnswer = () => {
-        let answer = document.getElementById('answer');
-        // this.props.updateAttempts(this.state.attempts-1);
-        if(parseInt(answer.value) === this.state.answer) {
-            this.correct();
-        } else {
-            this.incorrect();
-        }   
-    }
-
     correct = () => {
-        this.setState({alertMessage : 'Correct!'});
-            this.showAlert();
-            if(!this.state.alertMessage){
-                this.props.handleScore(this.state.attempts);
-                this.props.totalQuestions();
-                this.nextQuestion();
-            }
+        this.setState({alertMessage : 'Correct!'},
+        () => {this.showAlert();});
+        
+        if(!this.state.alertMessage){
+            this.props.handleScore(this.state.attempts);
+            // this.props.totalQuestions();
+            this.nextQuestion();
+        }
     }
 
     incorrect = () => {
         this.setState({alertMessage : 'Incorrect!'});
-            this.showAlert();
-            this.setState(prevState => {
-                return {attempts : prevState.attempts - 1}
-            });
-            this.props.updateAttempts(this.state.attempts-1);
-            document.getElementById('answer').value = null;
+        this.showAlert();
+        this.setState(prevState => {
+            return {attempts : prevState.attempts - 1}
+        });
+        this.props.updateAttempts(this.state.attempts-1);
+        document.getElementById('answer').value = null;
     }
 
     //Correct message
@@ -84,7 +76,8 @@ export default class Question extends React.Component {
         document.getElementById('answer').value = null;
         this.generateQuestion(this.state.problem);
         this.setState({
-            attempts : 3
+            attempts : 3,
+            alertMessage : null
         });  
         this.props.updateAttempts(3); 
     }
@@ -97,13 +90,32 @@ export default class Question extends React.Component {
         }  
     }
 
+    handleMessage = () => {
+        if(this.state.alert) {
+           return <AlertMessage message={this.state.alertMessage} /> 
+        } else { return null; }
+    }
+
+    checkAnswer = () => {
+        let answer = document.getElementById('answer');
+        // this.props.updateAttempts(this.state.attempts-1);
+        if(parseInt(answer.value) === this.state.answer) {
+            this.correct();
+        } else {
+            this.incorrect();
+        }   
+    }
+
     render() {
         return(
             <div>
-                <p>What is the answer to</p>
-                <h4>{this.state.problem}</h4>
-                <input type="text" name="answer" id="answer"></input>
-                <button onClick={this.handleClick}>Check</button>
+                <div>
+                    <p>What is the answer to</p>
+                    <h4>{this.state.problem}</h4>
+                    <input type="text" name="answer" id="answer"></input>
+                    <button onClick={this.handleClick}>Check</button>
+                </div>
+                {this.handleMessage()}
             </div>
         );
     }
