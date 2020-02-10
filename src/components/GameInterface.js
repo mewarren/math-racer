@@ -11,7 +11,7 @@ export default class GameInterface extends React.Component {
         this.state = { 
             playerReady : false,
             attempts : 3,
-            totalQuestions : 0,
+            // totalQuestions : 0,
             alert : false,
             alertMessage : null,
             subject : null
@@ -41,12 +41,12 @@ export default class GameInterface extends React.Component {
         });
     }
 
-    updateTotalQuestions = () => {
-        //end game goes here
-        this.setState(prevState => {
-            return {totalQuestions : prevState.totalQuestions + 1}
-        });
-    }
+    // updateTotalQuestions = () => {
+    //     //end game goes here
+    //     this.setState(prevState => {
+    //         return {totalQuestions : prevState.totalQuestions + 1}
+    //     });
+    // }
     
     renderSubject = () => {
         const { players, numberOfPlayers, start, gameStatus} = this.props;
@@ -87,7 +87,7 @@ export default class GameInterface extends React.Component {
                         subject={subject} 
                         updateAttempts={this.updateAttempts}
                         handleScore={this.handleScore}
-                        totalQuestions={this.updateTotalQuestions}
+                        // totalQuestions={this.updateTotalQuestions}
                         nextPlayer={nextPlayer}
                     /> 
                     : null 
